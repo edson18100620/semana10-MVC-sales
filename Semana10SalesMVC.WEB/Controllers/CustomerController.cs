@@ -13,7 +13,7 @@ namespace Semana10SalesMVC.WEB.Controllers
         public async Task<IActionResult> Listado()
         {
             var customers = await CustomerService.GetAll();
-            return View(customers);        
+            return PartialView(customers);        
         }
         
     }

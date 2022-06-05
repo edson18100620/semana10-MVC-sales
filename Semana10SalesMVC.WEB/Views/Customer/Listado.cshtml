@@ -18,12 +18,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>{{item.Id}}</td>
-                <td>{{item.FirstName}}</td>
-                <td>{{item.LastName}}</td>
-                <td>{{item.City}}</td>
-                <td>{{item.Country}}</td>
-                <td>{{item.Phone}}</td>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.City</td>
+                <td>@item.Country</td>
+                <td>@item.Phone</td>
                 <td>
                     <button class="btn btn-primary" id="btnEditarCliente" data-id="{{item.Id}}">
                         Editar
