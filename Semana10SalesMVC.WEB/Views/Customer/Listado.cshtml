@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CustomerModel>
+
+@*Create table for CustomerModel*@
+
+<table id="tbListadoCliente" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>{{item.Id}}</td>
+                <td>{{item.FirstName}}</td>
+                <td>{{item.LastName}}</td>
+                <td>{{item.City}}</td>
+                <td>{{item.Country}}</td>
+                <td>{{item.Phone}}</td>
+                <td>
+                    <button class="btn btn-primary" id="btnEditarCliente" data-id="{{item.Id}}">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger" id="btnEliminarCliente" data-id="{{item.Id}}">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
