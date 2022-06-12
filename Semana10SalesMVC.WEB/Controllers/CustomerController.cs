@@ -17,6 +17,19 @@ namespace Semana10SalesMVC.WEB.Controllers
             return PartialView(customers);        
         }
 
+        public async Task<IActionResult> Eliminar(int idCliente) 
+        {
+            bool exito = await CustomerService.Delete(idCliente);
+            return Json(exito);
+        }
+
+        public async Task<IActionResult> Obtener(int idCliente)
+        {
+            var customer = await CustomerService.GetCustomer(idCliente);
+            return Json(customer);
+        }
+        
+
         [HttpPost]
         public async Task<IActionResult> Guardar(int idCliente, string nombre,
             string apellido, string ciudad, string pais, string telefono)

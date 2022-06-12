@@ -74,6 +74,60 @@
 
 
 <script>
+
+     $("#divListadoCliente").on('click','.btnEliminarCliente',function()
+     {
+         let vIdCliente = $(this).attr("data-id");
+
+         if(confirm("¿Está seguro de eliminar al cliente?")){
+
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("Eliminar","Customer")',
+                data:{
+                    idCliente: vIdCliente
+                },
+                 cache:false,
+                success: function(result)
+                {
+                    if(result){
+                        CargarListadoCliente();
+                    }else{
+                        alert("Ocurrió un error al eliminar el cliente...")
+                    }
+                }
+            })
+         }
+     });
+
+
+    $("#divListadoCliente").on('click','.btnEditarCliente',function(){
+        let vIdCliente = $(this).attr("data-id")
+        $("#hidIdCliente").val(vIdCliente);
+        let modalRegistro = $("#modalRegistroCliente");
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Obtener","Customer")',
+            data: {
+                idCliente: vIdCliente
+            },
+            cache:false,
+            success: function(objCliente)
+            {
+                $("#txtNombre").val(objCliente.firstName);
+                $("#txtApellido").val(objCliente.lastName);
+                $("#txtPais").val(objCliente.country);
+                $("#txtCiudad").val(objCliente.city);
+                $("#txtTelefono").val(objCliente.phone);
+                modalRegistro.modal("show");
+            }
+        });
+
+    });
+
+
+
     CargarListadoCliente();
 
     function CargarListadoCliente()
@@ -91,6 +145,7 @@
 
     //Button click btnAgregar
     $("#btnAgregarCliente").click(function(){
+        $("#hidIdCliente").val(-1);
     //Show modal
         $("#modalRegistroCliente").modal("show");
     });
@@ -123,7 +178,7 @@
                   CargarListadoCliente();
                 }else{
                     alert("Ocurrió un error al registrar un cliente")
-                }                
+                }
             }
         });
     });

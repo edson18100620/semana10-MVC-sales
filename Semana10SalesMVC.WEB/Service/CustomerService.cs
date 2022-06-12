@@ -19,6 +19,19 @@ namespace Semana10SalesMVC.WEB.Service
             return customers;
         }
 
+        //Get Customers by id
+        public static async Task<CustomerModel> GetCustomer(int id)
+        {
+            //Get All using HttpClient
+            string urlBase = "http://localhost:5047/api/Customer/";
+
+            using var httpClient = new HttpClient();
+            using var response = await httpClient.GetAsync(urlBase + "GetById/" + id);
+            string apiResponse = response.Content.ReadAsStringAsync().Result;
+            var customer = JsonConvert.DeserializeObject<CustomerModel>(apiResponse);
+            return customer;
+        }
+
         //Create new Customer
         public static async Task<bool> Insert(CustomerModel customer)
         {
