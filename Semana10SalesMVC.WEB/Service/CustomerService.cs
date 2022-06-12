@@ -16,8 +16,7 @@ namespace Semana10SalesMVC.WEB.Service
             string apiResponse = response.Content.ReadAsStringAsync().Result;
             var customers = JsonConvert.DeserializeObject<IEnumerable<CustomerModel>>(apiResponse);
             return customers;
-
-        }
+        }        
         
     }
 }
