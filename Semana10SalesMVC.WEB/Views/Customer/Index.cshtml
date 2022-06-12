@@ -95,6 +95,39 @@
         $("#modalRegistroCliente").modal("show");
     });
 
+    //Button click btnGuardarCliente
+    $(".btnGuardarCliente").click(function(){
+        var idCliente = $("#hidIdCliente").val();
+        var nombre = $("#txtNombre").val();
+        var apellido = $("#txtApellido").val();
+        var pais = $("#txtPais").val();
+        var ciudad = $("#txtCiudad").val();
+        var telefono = $("#txtTelefono").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Guardar","Customer")',
+            data: {
+                idCliente: idCliente,
+                nombre: nombre,
+                apellido: apellido,
+                pais: pais,
+                ciudad: ciudad,
+                telefono: telefono
+            },
+            cache:false,
+            success: function(result)
+            {
+                if(result){
+                  $("#modalRegistroCliente").modal("hide");
+                  CargarListadoCliente();
+                }else{
+                    alert("Ocurrió un error al registrar un cliente")
+                }                
+            }
+        });
+    });
+
 
 
 </script>
